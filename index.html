@@ -2,201 +2,79 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flashcards 5e - Probabilités</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flashcards Maths</title>
   <style>
     body {
       font-family: sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      margin: 0;
       padding: 20px;
-      background: #f0f0f0;
+      background-color: #f7f7f7;
+      color: #222;
     }
 
     h1 {
-      margin-top: 5px;
-      margin-bottom: 15px;
       text-align: center;
-      font-size: 1.2rem;
+      font-size: 2rem;
+      margin-bottom: 30px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(2, auto);
-      gap: 15px;
-      width: 100%;
-      max-width: 960px;
+    section {
+      max-width: 800px;
+      margin: auto;
+      margin-bottom: 40px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
-    .card {
-      width: 100%;
-      aspect-ratio: 30 / 21;
-      perspective: 1000px;
-      cursor: pointer;
+    h2 {
+      font-size: 1.3rem;
+      margin-top: 0;
     }
 
-    .card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.6s;
-      transform-style: preserve-3d;
+    ul {
+      list-style-type: none;
+      padding-left: 0;
     }
 
-    .card.flipped .card-inner {
-      transform: rotateY(180deg);
+    li {
+      margin: 10px 0;
     }
 
-    .card-face {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border: 2px solid #444;
-      border-radius: 10px;
-      overflow: hidden;
-      background-color: white;
+    a {
+      text-decoration: none;
+      color: #0a5ba5;
+      font-weight: bold;
     }
 
-    .card-front img, .card-back img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .card-back {
-      transform: rotateY(180deg);
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    .buttons {
-      margin-top: 20px;
-      display: flex;
-      gap: 10px;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    @media (max-width: 800px) {
-      .grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: none;
-      }
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <h1 id="pageTitle"></h1>
-  <div class="grid" id="cardGrid"></div>
-  <div class="buttons">
-    <button onclick="generateCards()">🔄 Nouvelle série</button>
-    <button onclick="resetCards()">↩️ Tout réinitialiser</button>
-  </div>
+  <h1>Flashcards de Mathématiques</h1>
 
-  <script>
-    const pageTitle = "Flashcards 5e - Probabilités";
-    document.getElementById('pageTitle').textContent = pageTitle;
+  <section>
+    <h2>🧮 Niveau 5e</h2>
+    <ul>
+      <li><a href="5e/proba.html">Probabilités</a></li>
+      <li><a href="5e/fractions.html">Fractions</a></li>
+      <!-- CHAPITRES MASQUES
+      <li><a href="5e/geometrie.html">Géométrie</a></li>
+      -->
+    </ul>
+  </section>
 
-    const maxCards = 6; // nombre de cartes à afficher
-    const maxAvailable = 100; // nombre total possible (fichiers nommés de 01 à 100)
-    const imageFolder = 'images';
-
-    const allCardsData = [];
-    for (let i = 1; i <= maxAvailable; i++) {
-      const num = i.toString().padStart(2, '0');
-      allCardsData.push({
-        question: `${imageFolder}/question_${num}.png`,
-        answer: `${imageFolder}/reponse_${num}.png`
-      });
-    }
-
-    function shuffle(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
-    }
-
-    function filterExistingCards(cards, maxToCheck, callback) {
-      let existing = [];
-      let tested = 0;
-      const toTest = cards.slice(0, maxToCheck);
-
-      toTest.forEach(card => {
-        const img = new Image();
-        img.onload = () => {
-          existing.push(card);
-          testDone();
-        };
-        img.onerror = testDone;
-        img.src = card.question;
-
-        function testDone() {
-          tested++;
-          if (tested === toTest.length) {
-            callback(existing);
-          }
-        }
-      });
-    }
-
-    function generateCards() {
-      const grid = document.getElementById('cardGrid');
-      grid.innerHTML = '';
-
-      const shuffled = shuffle([...allCardsData]);
-      filterExistingCards(shuffled, maxAvailable, (existingCards) => {
-        const selected = shuffle(existingCards).slice(0, maxCards);
-
-        selected.forEach(card => {
-          const cardElement = document.createElement('div');
-          cardElement.className = 'card';
-
-          const inner = document.createElement('div');
-          inner.className = 'card-inner';
-
-          const front = document.createElement('div');
-          front.className = 'card-face card-front';
-          const frontImg = document.createElement('img');
-          frontImg.src = card.question;
-          front.appendChild(frontImg);
-
-          const back = document.createElement('div');
-          back.className = 'card-face card-back';
-          const backImg = document.createElement('img');
-          backImg.src = card.answer;
-          back.appendChild(backImg);
-
-          inner.appendChild(front);
-          inner.appendChild(back);
-          cardElement.appendChild(inner);
-
-          cardElement.addEventListener('click', () => {
-            cardElement.classList.toggle('flipped');
-          });
-
-          grid.appendChild(cardElement);
-        });
-      });
-    }
-
-    function resetCards() {
-      const cards = document.querySelectorAll('.card');
-      cards.forEach(card => {
-        card.classList.remove('flipped');
-      });
-    }
-
-    generateCards();
-  </script>
+  <section>
+    <h2>📐 Niveau 4e</h2>
+    <ul>
+      <li><a href="4e/fonctions.html">Fonctions</a></li>
+      <li><a href="4e/theoreme-thales.html">Théorème de Thalès</a></li>
+      <li><a href="4e/equa.html">Équations</a></li>
+    </ul>
+  </section>
 </body>
 </html>

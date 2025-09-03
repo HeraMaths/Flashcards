@@ -117,8 +117,30 @@ h1 {
 }
 
 @media (max-width: 800px) {
+  /* Les cartes passent déjà en 1 colonne */
   .card-container {
     grid-template-columns: 1fr;
     grid-template-rows: none;
+    gap: 15px; /* un peu moins d’espace entre les cartes */
+  }
+
+  /* Les boutons prennent toute la largeur disponible */
+  .btn {
+    width: 90%;
+    max-width: 300px;
+    font-size: 1em;
+    padding: 12px 20px;
+    margin: 10px auto;
+  }
+
+  /* Titre plus compact */
+  h1 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+
+  /* Corps de page avec moins de padding */
+  body {
+    padding: 15px;
   }
 }

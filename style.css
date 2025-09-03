@@ -116,15 +116,17 @@ h1 {
   transform: rotateY(180deg);
 }
 
+/* ===== Responsive ===== */
+
+/* Portrait mobile : 1 colonne */
 @media (max-width: 800px) {
-  /* Les cartes passent déjà en 1 colonne */
   .card-container {
     grid-template-columns: 1fr;
     grid-template-rows: none;
-    gap: 15px; /* un peu moins d’espace entre les cartes */
+    gap: 15px;
   }
 
-  /* Les boutons prennent toute la largeur disponible */
+  /* Boutons plus confortables */
   .btn {
     width: 90%;
     max-width: 300px;
@@ -142,5 +144,14 @@ h1 {
   /* Corps de page avec moins de padding */
   body {
     padding: 15px;
+  }
+}
+
+/* Paysage mobile / tablette : revenir à grille 2x2 */
+@media screen and (orientation: landscape) and (max-width: 1024px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 20px;
   }
 }

@@ -1,116 +1,123 @@
+/* ===== Styles généraux ===== */
 body {
-  font-family: sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background: #f0f0f0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 30px;
+  background-color: #fafafa;
 }
 
 h1 {
-  margin-top: 5px;
-  margin-bottom: 15px;
-  text-align: center;
-  font-size: 1.2rem;
+  margin-bottom: 30px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, auto);
-  gap: 15px;
-  width: 100%;
-  max-width: 960px;
+/* ===== Boutons ===== */
+.btn {
+  display: inline-block;
+  margin: 15px 15px;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  border-radius: 12px;
+  color: white;
+  text-decoration: none;
+  width: 250px;
+  transition: all 0.3s ease;
 }
 
-.card {
-  width: 100%;
-  aspect-ratio: 30 / 21;
-  perspective: 1000px;
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.btn, .btn-return {
   cursor: pointer;
+}
+
+/* Bouton retour */
+.btn-return {
+  background-color: #555;
+}
+.btn-return:hover {
+  background-color: #333;
+}
+
+/* Boutons niveau 5e */
+.btn-5e {
+  background: linear-gradient(to right, #673ab7, #5e35b1);
+}
+.btn-5e:hover {
+  background: linear-gradient(to right, #5e35b1, #673ab7);
+}
+
+/* Boutons niveau 4e */
+.btn-4e {
+  background: linear-gradient(to right, #009688, #00796b);
+}
+.btn-4e:hover {
+  background: linear-gradient(to right, #00796b, #009688);
+}
+
+/* ===== Conteneur et grille des cartes ===== */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 20px;
+  justify-items: center;
+  align-items: center;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+/* ===== Cartes flash ===== */
+.card {
+  width: 95%;
+  max-width: 600px;
+  aspect-ratio: 30 /21;
+  /*border: 2px solid #444;*/
+  border-radius: 12px;
+  background: #f9f9f9;
+  cursor: pointer;
+  position: relative;
+  perspective: 1000px;
+}
+
+.card img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* ou cover si tu veux qu’elles remplissent tout le cadre en coupant légèrement */
+  border-radius: 12px; /* pour respecter les coins arrondis de la carte */
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+}
+
+.front {
+  background: white;
+}
+
+.back {
+  background: #eee;
+  transform: rotateY(180deg);
 }
 
 .card-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.6s;
   transform-style: preserve-3d;
+  transition: transform 0.8s;
 }
 
 .card.flipped .card-inner {
   transform: rotateY(180deg);
 }
 
-.card-face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border: 2px solid #444;
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: white;
-}
-
-.card-front img, .card-back img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.card-back {
-  transform: rotateY(180deg);
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.buttons {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
-}
-
-button {
-  padding: 12px 24px;
-  font-size: 1rem;
-  font-weight: bold;
-  color: white;
-  background: linear-gradient(to right, #0a5ba5, #0077cc);
-  border: none;
-  border-radius: 8px;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-}
-
-button:hover {
-  background: linear-gradient(to right, #0077cc, #0a5ba5);
-  transform: scale(1.05);
-}
-
-
-.back-home {
-  margin-top: 30px;
-}
-
-.back-home a {
-  text-decoration: none;
-  color: white;
-  background-color: #0a5ba5;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-weight: bold;
-  display: inline-block;
-}
-
-.back-home a:hover {
-  background-color: #084b86;
-}
-
 @media (max-width: 800px) {
-  .grid {
+  .card-container {
     grid-template-columns: 1fr;
     grid-template-rows: none;
   }

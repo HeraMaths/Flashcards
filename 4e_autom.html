@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>4e - Automatismes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Automatismes 4e</h1>
+
+  <!-- Conteneur pour les boutons -->
+  <div id="autom-btns"></div>
+
+  <!-- Bouton retour -->
+  <a href="4e.html" class="btn btn-return">⬅ Retour</a>
+
+  <script src="config.js"></script>
+  <script>
+    const container = document.getElementById("autom-btns");
+    const niveau = "4eme";
+
+    if (config.flashcards[niveau] && config.flashcards[niveau].A) {
+      Object.entries(config.flashcards[niveau].A).forEach(([type, label]) => {
+        const a = document.createElement("a");
+        a.href = `flashcards.html?niveau=${niveau}&type=${type}`;
+        a.className = "btn btn-4e";
+        a.textContent = `${type} - ${label}`;
+        container.appendChild(a);
+      });
+    }
+  </script>
+</body>
+</html>

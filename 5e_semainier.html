@@ -11,7 +11,12 @@
   <div id="semaine-container" class="card-container"></div>
   <a href="5e.html" class="btn btn-return">⬅ Retour</a>
 
-  <script src="config.js"></script>
+  <script>
+  const script = document.createElement('script');
+  script.src = `config.js?v=${new Date().getTime()}`;
+  document.head.appendChild(script);
+  </script>
+
   <script src="semainier.js"></script>
 </body>
 </html>

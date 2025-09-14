@@ -15,7 +15,12 @@
   <!-- Bouton retour -->
   <a href="4e.html" class="btn btn-return">⬅ Retour</a>
 
-  <script src="config.js"></script>
+  <script>
+  const script = document.createElement('script');
+  script.src = `config.js?v=${new Date().getTime()}`;
+  document.head.appendChild(script);
+  </script>
+
   <script>
     const container = document.getElementById("cours-btns");
     const niveau = "4eme";

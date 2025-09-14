@@ -15,15 +15,15 @@ const config = {
   flashcards: {
     "5eme": {
       "A": { // Automatismes
-        "A1": "Multiplication/Division par 10, 100, 1000",
-        "A2": "n°2",
+        "A1": "Multiplication par 10, 100, 1000",
+        "A2": "Multiplication par 0,1 ; 0,01 ; 0,001",
         "A3": "n°3",
         "A4": "n°4"
       },
       "C": { // Questions de cours
         "C1": "Priorités opératoires",
-        "C2": "Chapitre 2",
-        "C3": "Chapitre 3"
+        "C2": "n°2",
+        "C3": "n°3"
       }
     },
     "4eme": {
@@ -32,7 +32,7 @@ const config = {
         "A2": "n°2"
       },
       "C": {
-        "C1": "n°1",
+        "C1": "Egalité de Pythagore (1)",
         "C2": "n°2"
       }
     }

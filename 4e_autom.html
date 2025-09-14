@@ -5,6 +5,7 @@
   <title>4e - Automatismes</title>
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="loadConfig.js"></script>
 </head>
 <body>
   <h1>Automatismes 4e</h1>
@@ -15,22 +16,21 @@
   <!-- Bouton retour -->
   <a href="4e.html" class="btn btn-return">⬅ Retour</a>
 
-  <script src="config.js"></script>
-
-
   <script>
-    const container = document.getElementById("autom-btns");
-    const niveau = "4eme";
+    loadConfig((config) => {
+      const container = document.getElementById("autom-btns");
+      const niveau = "4eme";
 
-    if (config.flashcards[niveau] && config.flashcards[niveau].A) {
-      Object.entries(config.flashcards[niveau].A).forEach(([type, label]) => {
-        const a = document.createElement("a");
-        a.href = `flashcards.html?niveau=${niveau}&type=${type}`;
-        a.className = "btn btn-4e";
-        a.textContent = `${type} - ${label}`;
-        container.appendChild(a);
-      });
-    }
+      if (config.flashcards[niveau] && config.flashcards[niveau].A) {
+        Object.entries(config.flashcards[niveau].A).forEach(([type, label]) => {
+          const a = document.createElement("a");
+          a.href = `flashcards.html?niveau=${niveau}&type=${type}`;
+          a.className = "btn btn-4e";
+          a.textContent = `${type} - ${label}`;
+          container.appendChild(a);
+        });
+      }
+    });
   </script>
 </body>
 </html>

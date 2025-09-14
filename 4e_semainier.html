@@ -5,14 +5,21 @@
   <title>4e - Semainier</title>
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="loadConfig.js"></script>
 </head>
 <body>
   <h1>4e - Semainier</h1>
   <div id="semaine-container" class="card-container"></div>
   <a href="4e.html" class="btn btn-return">⬅ Retour</a>
 
-  <script src="config.js"></script>
+  <script>
+    loadConfig((config) => {
+      const niveau = "4eme";
+      const container = document.getElementById("semaine-container");
+      window.initSemainier(config, niveau, container);
+    });
+  </script>
 
-  <script src="semaine.js"></script>
+  <script src="semainier.js"></script>
 </body>
 </html>

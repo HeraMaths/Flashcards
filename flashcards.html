@@ -5,6 +5,7 @@
   <title>Flashcards</title>
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="loadConfig.js"></script>
 </head>
 <body>
 
@@ -16,10 +17,14 @@
     <a href="index.html" class="btn btn-return">⬅ Retour</a>
   </div>
 
-  <script src="config.js"></script>
-
-
-  <script src="flashcards.js"></script>
+  <script>
+    loadConfig((config) => {
+      // On peut maintenant utiliser la variable config dans flashcards.js
+      const script = document.createElement('script');
+      script.src = "flashcards.js";
+      document.body.appendChild(script);
+    });
+  </script>
 
 </body>
 </html>
